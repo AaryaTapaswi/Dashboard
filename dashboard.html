@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="https://kit.fontawesome.com/95df22e352.js" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=DynaPuff:wght@500&family=Lemon&family=Noto+Sans&family=Secular+One&family=Signika+Negative:wght@600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div id="enterdetails">
+        <h1>Enter details</h1>
+        <h4>ID</h4>
+        <input id="enterID" type="text" class="input-field">
+
+        <h4>Product</h4> 
+        <input id="enterName" type="text" class="input-field">
+
+        <h4>Cost</h4>
+        <input id="enterPrice" type="text" class="input-field">
+
+        <h4>Brand</h4>
+        <input id="enterBrand" type="text" class="input-field"> <br><br>
+
+        <h4>Quantity</h4>
+        <input id="enterQuant" type="text" class="input-field"> <br><br>
+
+        
+
+        <button id="insert" type="button" class="btn btn-primary btn-lg data">Add</button><!-- <button id="insert" class="data">Add</button> -->
+        <button id="update" type="button" class="btn btn-primary btn-lg data">Update</button><!-- <button id="update" class="data">Update</button> -->
+        <button id="remove" type="button" class="btn btn-primary btn-lg data">Remove</button><!-- <button id="remove" class="data">Remove</button> -->
+
+    </div>
+
+    <div id='finddetails'>
+        <h1>Find by ID</h1>
+        <input id="findID" type="text" class="input-field"> <br><br>
+        <button type="button" id="find" class="btn btn-warning"><i class="fa-solid fa-magnifying-glass"></i></button><!-- <button id="find">FIND</button> -->
+
+        <div id="opt">
+            <h3 id="findName" type="text" class="output" id="op1"></h3>
+            <h3 id="findCost" type="number" class="output" id="op2"></h3>
+            <h3 id="findBrand" type="text" class="output" id="op3"></h3>
+            <h3 id="findQuant" type="number" class="output" id="op4"></h3>
+        </div>
+        
+    </div>
+
+    
+ 
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAWg5k346-TIL2jxZotqLnsI3_0HRI0XRE",
+          authDomain: "dashboard-e75f4.firebaseapp.com",
+          databaseURL: "https://dashboard-e75f4-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "dashboard-e75f4",
+          storageBucket: "dashboard-e75f4.appspot.com",
+          messagingSenderId: "819893945959",
+          appId: "1:819893945959:web:333fe53dc7af4bf33d76c2"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import {getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+
+        const db = getDatabase();
+
+        var enterID = document.querySelector("#enterID");
+        var enterName = document.querySelector("#enterName");
+        var enterPrice = document.querySelector("#enterPrice");
+        var enterBrand = document.querySelector("#enterBrand");
+        var enterQuant = document.querySelector("#enterQuant");
+        
+        var findID = document.querySelector("#findID");
+        var findName = document.querySelector("#findName");
+        var findPrice = document.querySelector("#findPrice");
+        var findBrand = document.querySelector("#findBrand");
+        var findQuant = document.querySelector("#findQuant");
+
+        var insertBtn = document.querySelector("#insert");
+        var updateBtn = document.querySelector("#update");
+        var removeBtn = document.querySelector("#remove");
+        var findBtn = document.querySelector("#find");
+
+        function InsertData(){
+            set(ref(db,"Shop/"+enterID.value),{
+                ID:enterID.value,
+                Product:enterName.value,
+                Cost:enterPrice.value,
+                Brand:enterBrand.value,
+                Quantity:enterQuant.value
+            })
+            .then(() => {
+                alert("Data added successfully!")
+            })
+            .catch((error) => {
+                alert(error)
+            });
+        }
+
+        function FindData(){
+            const dbref = ref(db);
+
+            get(child(dbref,"Shop/"+ findID.value))
+            .then((snapshot) =>{
+                if(snapshot.exists()){
+                    findName.innerHTML="Product: "+snapshot.val().Product;
+                    findCost .innerHTML="Cost: "+snapshot.val().Cost;
+                    findBrand.innerHTML="Brand: "+snapshot.val().Brand;
+                    findQuant.innerHTML="Quantity available: "+snapshot.val().Quantity;
+
+                }
+                else{
+                    alert("No data found!");
+                }
+            })
+            .catch((error) => {
+                alert(error); 
+            })
+        }
+
+        function UpdateData(){
+            update(ref(db,"Shop/"+enterID.value),{
+                Product:enterName.value,
+                Cost:enterPrice.value,
+                Brand:enterBrand.value,
+                Quantity:enterQuant.value,
+            })
+            .then(() => {
+                alert("Data updated successfully!");
+            })
+            .catch((error) => {
+                alert(error);
+            })
+        }
+
+        function RemoveData(){
+            remove(ref(db,"Shop/"+enterID.value))
+            .then(() => {
+                alert("Data removed successfully!");
+            })
+            .catch((error) => {
+                alert(error);
+            }) 
+        }
+
+        insertBtn.addEventListener("click",InsertData);
+        findBtn.addEventListener("click",FindData);
+        updateBtn.addEventListener("click",UpdateData);
+        removeBtn.addEventListener("click",RemoveData);
+
+      </script>
+
+
+    
+</body>
+</html>
