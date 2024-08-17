@@ -2,21 +2,26 @@ This HTML document is a simple web-based dashboard that allows users to manage (
 
 ### Overview:
 1.	**Webpage:**
+ 
  ![image](https://github.com/user-attachments/assets/f1122287-ce56-4173-a54b-abc07a936932)
 
 2.	**Add function:**
-  ![image](https://github.com/user-attachments/assets/c3d89149-617e-4734-bee7-270fb67dbe18)
+
+![image](https://github.com/user-attachments/assets/c3d89149-617e-4734-bee7-270fb67dbe18)
 ![image](https://github.com/user-attachments/assets/4ce61e63-5392-4602-bf6d-6f828a1aa56c)
 
 4.	**Update function:**
-  ![image](https://github.com/user-attachments/assets/2da1082b-b8cd-43c7-8aa2-29127955e519)
+
+![image](https://github.com/user-attachments/assets/2da1082b-b8cd-43c7-8aa2-29127955e519)
 ![image](https://github.com/user-attachments/assets/7aad4025-2133-4f08-be5b-5b9f7f748ebf)
 
 5.	**Remove function:**
-  ![image](https://github.com/user-attachments/assets/edecd5f7-3f66-45c0-8b0f-a61a5bb96b44)
+ 
+![image](https://github.com/user-attachments/assets/edecd5f7-3f66-45c0-8b0f-a61a5bb96b44)
 ![image](https://github.com/user-attachments/assets/56f225b7-76df-497f-94c9-117ef7e102d1)
 
-6.	**Search:**
+7.	**Search:**
+
 ![image](https://github.com/user-attachments/assets/6e0278a0-30e4-4c02-bd69-b06c10a43803)
  
 
